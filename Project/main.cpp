@@ -6,45 +6,39 @@
 #include "core/ForwardRenderer.h"
 #include "core/DeferredRenderer.h"
 
-#include "core/Scene.h"
+#include "scenes/myscene.h"
 
 #include "input/Mouse.h"
 #include "input/Keyboard.h"
 
-
+#include "behaviours/CameraControls.h"
 
 int main() {
 	int width = 640;
 	int height = 480;
-	int targetFPS = 10000;
+	int targetFPS = 1000;
 	// ---------------------------------------------------------------------------------------------------------
 	Window* window = new Window(width, height, "Cookbook");
 	// ---------------------------------------------------------------------------------------------------------
 	Camera* camera = new Camera(width, height, 60.f, glm::vec3(0.0f, 5.0f, 10.0f));
+	camera->add(new CameraControls(camera));
 
 	Renderer* renderer = new ForwardRenderer(width, height);
 	//Renderer* renderer = new DeferredRenderer(width, height);
-	Scene* scene = new Scene();
+	MyScene* myScene = new MyScene("MyScene", new Transform(glm::vec3(0.0f), glm::vec3(1.0f), glm::vec3(0.0f)));
+	myScene->add(camera);
+	myScene->populate();
 
-	glDepthMask(GL_TRUE);
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-
-	glFrontFace(GL_CCW);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	Time::initialize(1.0 / targetFPS);
 	while (window->isOpen()) {
 		//std::cout << std::to_string(elapsedTime) << std::endl;
 		if (Time::shouldRun()) {
 			// Update objects
-			camera->update(Time::getTimePerFrame());
+			myScene->update(Time::getTimePerFrame());
 			// Render objects
-			renderer->render(scene);
+			renderer->render(myScene);
+
 			// Apply graphics
 			window->swapBuffers();
 			// Receive input
@@ -61,14 +55,13 @@ int main() {
 	Mesh::clear();
 	Texture::clear();
 
-	Object::clear();
 	Light::clear();
 
 	delete renderer;
 	renderer = NULL;
 
-	delete scene;
-	scene = NULL;
+	delete myScene;
+	myScene = NULL;
 
 
 	window->terminate();

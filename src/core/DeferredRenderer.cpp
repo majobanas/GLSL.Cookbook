@@ -69,6 +69,17 @@ void DeferredRenderer::_streamQuadToOpenGL() {
 DeferredRenderer::DeferredRenderer(int pWidth, int pHeight)
 	:	Renderer(pWidth, pHeight)
 {
+	glDepthMask(GL_TRUE);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
+	glFrontFace(GL_CCW);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	_initializeQuad();
 
 	_shader = Shader::create("renderer");
@@ -149,7 +160,10 @@ void DeferredRenderer::render(Scene* pScene)
 	_clear();
 	glEnable(GL_DEPTH_TEST);
 
-	Object::render();
+
+	for (auto& child : pScene->children) {
+		child->render(Camera::MAIN->getTransform()->getMatrix(), Camera::MAIN->getView(), Camera::MAIN->getProjection());
+	}
 
 
 	MAIN->bindDefaultFrameBuffer();

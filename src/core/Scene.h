@@ -2,8 +2,10 @@
 
 #include <vector>
 
-#include "core/Object.h"
-#include "core/Camera.h"
+#include "core/Hierarchial/Drawable.h"
+
+//#include "core/Object.h"
+//#include "core/Camera.h"
 #include "core/Texture.h"
 
 #include "materials/BasicMaterial.h"
@@ -29,12 +31,16 @@
 #include "lights/SpotLight.h"
 
 
-class Scene {
+class Scene : public Transformable {
 private:
 
 protected:
 
 public:
-	Scene();
-	virtual ~Scene();
+	Scene(std::string pName, Transform* pTransform);
+	virtual ~Scene() = 0;
+
+	virtual void populate() = 0;
+
+	void update(float pElapsedTime);
 };

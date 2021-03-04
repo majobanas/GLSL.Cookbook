@@ -1,5 +1,7 @@
 #include "materials/RenderTextureMaterial.h"
 
+#include "core/Scene.h"
+
 void RenderTextureMaterial::_lazyInitializeShader()
 {
 	_aVertexHandle = _shader->getAttribLocation("vertex");
@@ -80,7 +82,7 @@ void RenderTextureMaterial::render(Mesh* pMesh, glm::mat4* pMatrix, glm::mat4* p
 	pMesh->streamToOpenGL(_aVertexHandle, -1, _aUVHandle, -1);
 }
 
-void RenderTextureMaterial::render(glm::mat4* pModel, glm::mat4* pProjection)
+void RenderTextureMaterial::render(Scene* pScene, glm::mat4* pModel, glm::mat4* pProjection)
 {
 	for (auto& renderTextureMaterial : RENDERTEXTUREMATERIAL) {
 		// Render to texture
@@ -89,15 +91,9 @@ void RenderTextureMaterial::render(glm::mat4* pModel, glm::mat4* pProjection)
 		//glViewport(0, 0, renderTexture->_textureWidth, renderTexture->_textureHeight);
 		//pCamera->setAspectRatio(renderTexture->_textureWidth, renderTexture->_textureHeight);
 
-		for (auto& object : Object::OBJECTS) {
-			glm::mat4 view = glm::inverse(*renderTextureMaterial->_eyeModel);
-
-			object->getMaterial()->render(
-				object->getMesh(),
-				object->getTransform()->getMatrix(),
-				pModel,
-				&view,
-				pProjection);
+		glm::mat4 view = glm::inverse(*renderTextureMaterial->_eyeModel);
+		for (auto& child : pScene->children) {
+			child->render(pModel, &view, pProjection);
 		}
 		renderTextureMaterial->_frameBuffer->unbind();
 	}

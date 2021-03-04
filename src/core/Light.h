@@ -6,9 +6,9 @@
 #include <map>
 #include <vector>
 
-#include "glm/glm.hpp"
 
 class Camera;
+class Scene;
 
 class Light : public Object {
 private:
@@ -26,8 +26,7 @@ public:
 	Light(int pLightType, glm::vec3 pPosition, glm::vec3 pColor, float pIntensity, glm::vec3 pDirection, float pTotalAngle, float pEffectiveAngle);
 	virtual ~Light() = 0;
 
-	static void create(Light* pLight);
-	static void shadow();
+	static void shadow(Scene* pScene);
 	static void render(Camera* pCamera);
 	static std::vector<Light*> LIGHTS;
 	static void clear();

@@ -1,9 +1,10 @@
 #include "core/Light.h"
 
 #include "core/Camera.h"
+#include "core/Scene.h"
 
 Light::Light(int pLightType, glm::vec3 pPosition, glm::vec3 pColor, float pIntensity, glm::vec3 pDirection, float pTotalAngle, float pEffectiveAngle)
-	:	Object("cube_flat.obj", new BasicMaterial(pColor), pPosition),
+	:	Object("Light" + std::to_string(pLightType), "cube_flat.obj", new BasicMaterial(pColor), pPosition),
 		_lightType(pLightType),
 		_position(pPosition),
 		_color(pColor),
@@ -51,12 +52,7 @@ Light::~Light()
 	}
 }
 
-void Light::create(Light* pLight)
-{
-	LIGHTS.push_back(pLight);
-}
-
-void Light::shadow()
+void Light::shadow(Scene* pScene)
 {
 	for (auto& light : LIGHTS) {
 		glViewport(0, 0, light->SHADOW_WIDTH, light->SHADOW_HEIGHT);
@@ -67,9 +63,11 @@ void Light::shadow()
 		light->_shader->setUniform(light->_uViewHandle, light->_view);
 		light->_shader->setUniform(light->_uProjectionHandle, light->_projection);
 		
-		for (auto& object : Object::OBJECTS) {
-			light->_shader->setUniform(light->_uMatrixHandle, object->getTransform()->getMatrix());
-			object->getMesh()->streamToOpenGL(light->_aVertexHandle, -1, -1, -1);
+		for (auto& child : pScene->children) {
+			if (child->type == COLLIDABLE) {
+				light->_shader->setUniform(light->_uMatrixHandle, child->getTransform()->getMatrix());
+				child->getMesh()->streamToOpenGL(light->_aVertexHandle, -1, -1, -1);
+			}
 		}
 	}
 	
@@ -81,7 +79,7 @@ void Light::render(Camera* pCamera)
 		light->_material->render(
 			light->_mesh,
 			light->_transform->getMatrix(),
-			pCamera->getMatrix(),
+			pCamera->getTransform()->getMatrix(),
 			pCamera->getView(),
 			pCamera->getProjection());
 	}
@@ -92,7 +90,7 @@ std::vector<Light*> Light::LIGHTS = std::vector<Light*>();
 void Light::clear()
 {
 	for (auto& light : LIGHTS) {
-		delete light;
+		// do not delete, owned by Scene
 		light = NULL;
 	}
 	LIGHTS.clear();

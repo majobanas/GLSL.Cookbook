@@ -12,7 +12,7 @@
 
 #include <map>
 
-#include "glad/glad.h"
+//#include "glad/glad.h"
 #include "glm/glm.hpp"
 
 class Mesh {

@@ -2,30 +2,19 @@
 
 #include "glm/glm.hpp"
 
-#include "core/Transform.h"
-#include "core/Mesh.h"
-#include "core/Material.h"
+#include "core/Hierarchial/Drawable.h"
+
+class Transform;
 
 class Camera;
 
-class Object {
+class Object : public Drawable {
 private:
 
 protected:
-	Transform* _transform = NULL;
-	Mesh* _mesh = NULL;
-	Material* _material = NULL;
 
 public:
-	Object(std::string pModel, Material* pMaterial, glm::vec3 pPosition = glm::vec3(0.0f), glm::vec3 pScale = glm::vec3(1.0f), glm::vec3 pRotation = glm::vec3(0.0f));
-	~Object();
+	Object(std::string pName, std::string pModel, Material* pMaterial, glm::vec3 pPosition = glm::vec3(0.0f), glm::vec3 pScale = glm::vec3(1.0f), glm::vec3 pRotation = glm::vec3(0.0f));
+	~Object() override;
 
-	static void create(Object* pObject);
-	static void render();
-	static std::vector<Object*> OBJECTS;
-	static void clear();
-
-	Transform* getTransform();
-	Mesh* getMesh();
-	Material* getMaterial();
 };

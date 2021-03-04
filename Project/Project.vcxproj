@@ -154,10 +154,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\behaviours\CameraControls.cpp" />
+    <ClCompile Include="..\src\colliders\SphereCollider.cpp" />
+    <ClCompile Include="..\src\core\Behaviour.cpp" />
     <ClCompile Include="..\src\core\Camera.cpp" />
+    <ClCompile Include="..\src\core\Collider.cpp" />
     <ClCompile Include="..\src\core\Cubemap.cpp" />
     <ClCompile Include="..\src\core\DeferredRenderer.cpp" />
     <ClCompile Include="..\src\core\ForwardRenderer.cpp" />
+    <ClCompile Include="..\src\core\Hierarchial\Collidable.cpp" />
+    <ClCompile Include="..\src\core\Hierarchial\Drawable.cpp" />
+    <ClCompile Include="..\src\core\Hierarchial\Entity.cpp" />
+    <ClCompile Include="..\src\core\Hierarchial\Transformable.cpp" />
     <ClCompile Include="..\src\core\Light.cpp" />
     <ClCompile Include="..\src\core\Material.cpp" />
     <ClCompile Include="..\src\core\Mesh.cpp" />
@@ -202,13 +210,23 @@
     <ClCompile Include="..\src\materials\SkyboxMaterial.cpp" />
     <ClCompile Include="..\src\materials\TextureBlinnMaterial.cpp" />
     <ClCompile Include="..\src\materials\TextureMaterial.cpp" />
+    <ClCompile Include="..\src\scenes\myscene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\behaviours\CameraControls.h" />
+    <ClInclude Include="..\src\colliders\SphereCollider.h" />
+    <ClInclude Include="..\src\core\Behaviour.h" />
     <ClInclude Include="..\src\core\Camera.h" />
+    <ClInclude Include="..\src\core\Collider.h" />
+    <ClInclude Include="..\src\core\Constants.h" />
     <ClInclude Include="..\src\core\Cubemap.h" />
     <ClInclude Include="..\src\core\DeferredRenderer.h" />
     <ClInclude Include="..\src\core\ForwardRenderer.h" />
+    <ClInclude Include="..\src\core\Hierarchial\Collidable.h" />
+    <ClInclude Include="..\src\core\Hierarchial\Drawable.h" />
+    <ClInclude Include="..\src\core\Hierarchial\Entity.h" />
+    <ClInclude Include="..\src\core\Hierarchial\Transformable.h" />
     <ClInclude Include="..\src\core\Light.h" />
     <ClInclude Include="..\src\core\Material.h" />
     <ClInclude Include="..\src\core\Mesh.h" />
@@ -252,6 +270,7 @@
     <ClInclude Include="..\src\materials\SkyboxMaterial.h" />
     <ClInclude Include="..\src\materials\TextureBlinnMaterial.h" />
     <ClInclude Include="..\src\materials\TextureMaterial.h" />
+    <ClInclude Include="..\src\scenes\myscene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\shaders\basic.fragment.glsl" />

@@ -61,6 +61,30 @@
     <Filter Include="Source Files\shaders\shadow">
       <UniqueIdentifier>{946c98fa-aaac-485b-892d-80f83103b097}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\Hierarchial">
+      <UniqueIdentifier>{9018cab5-d2c6-49cd-b35a-03db114e3f10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\Hierarchial">
+      <UniqueIdentifier>{d3d3c85b-fe2e-4f46-88b0-bab1dd49bdbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\scenes">
+      <UniqueIdentifier>{fd1ae0da-4115-498f-a2e3-d1e15f1c8e44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scenes">
+      <UniqueIdentifier>{54e46330-a6cb-47d6-ac4a-bbfbeb3e6808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\behaviours">
+      <UniqueIdentifier>{70733fb5-1e2a-4c69-96b8-23db14b20ec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\behaviours">
+      <UniqueIdentifier>{a710f13f-ec8f-4bae-9ec4-c3952b470875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\colliders">
+      <UniqueIdentifier>{3c1bc31a-ecd1-41fe-96fd-ef3fe2702599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\colliders">
+      <UniqueIdentifier>{2f698f5e-16c7-4ea9-8da5-5e8b2c9cd3f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -210,6 +234,33 @@
     <ClCompile Include="..\src\materials\LightsourceCubemapTextureMaterial.cpp">
       <Filter>Source Files\materials</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\core\Hierarchial\Entity.cpp">
+      <Filter>Source Files\core\Hierarchial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core\Hierarchial\Transformable.cpp">
+      <Filter>Source Files\core\Hierarchial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core\Hierarchial\Drawable.cpp">
+      <Filter>Source Files\core\Hierarchial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core\Hierarchial\Collidable.cpp">
+      <Filter>Source Files\core\Hierarchial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\scenes\myscene.cpp">
+      <Filter>Source Files\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core\Behaviour.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\behaviours\CameraControls.cpp">
+      <Filter>Source Files\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\core\Collider.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\colliders\SphereCollider.cpp">
+      <Filter>Source Files\colliders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\core\Window.h">
@@ -352,6 +403,36 @@
     </ClInclude>
     <ClInclude Include="..\src\materials\DeferredMaterial.h">
       <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\Hierarchial\Entity.h">
+      <Filter>Header Files\core\Hierarchial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\Hierarchial\Transformable.h">
+      <Filter>Header Files\core\Hierarchial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\Hierarchial\Drawable.h">
+      <Filter>Header Files\core\Hierarchial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\Hierarchial\Collidable.h">
+      <Filter>Header Files\core\Hierarchial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\scenes\myscene.h">
+      <Filter>Header Files\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\Behaviour.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\behaviours\CameraControls.h">
+      <Filter>Header Files\behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\Constants.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\core\Collider.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\colliders\SphereCollider.h">
+      <Filter>Header Files\colliders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

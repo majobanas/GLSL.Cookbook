@@ -8,6 +8,7 @@
 #include"core/OpenGL/FrameBuffer.h"
 #include"core/OpenGL/DepthBuffer.h"
 
+class Scene;
 
 class RenderTextureMaterial : public Material {
 private:
@@ -40,7 +41,7 @@ public:
 
 	void render(Mesh* pMesh, glm::mat4* pMatrix, glm::mat4* pModel, glm::mat4* pView, glm::mat4* pProjection) override;
 
-	static void render(glm::mat4* pModel, glm::mat4* pProjection);
+	static void render(Scene* pScene, glm::mat4* pModel, glm::mat4* pProjection);
 	static std::vector<RenderTextureMaterial*> RENDERTEXTUREMATERIAL;
 
 };
